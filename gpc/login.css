@@ -19,39 +19,25 @@ body{
 
 .hero1{
     width: 320px;
-    margin-top: 30px;
+    height: 480px;
+    margin-top: 120px;
 }
 
 .info-texto{
+    font-size: 12px;
     color: #d4e174;
-    font-size: 10px;
 }
 
-
 .hero1 h1{
-    margin: 10px auto;
+    margin: 50px auto;
+    font-size: 45px;
     color: #eafbfc;
-    font-size: 46px;
 }
 
 .hero1 p{
+    font-size: 16px;
     color: #a3b4bb;
-    font-size: 12px;
     line-height: 30px;
-}
-
-.bloco{
-    margin: 50px auto;
-}
-
-.bloco span{
-    color: #d4e174;
-}
-
-.bloco div{
-    color: #eafbfc;
-    font-size: 12px;
-    margin-top: 8px;
 }
 
 .conteudo2{
@@ -62,119 +48,112 @@ body{
 }
 
 .hero2{
-    width: 320px;
-    margin-top: 20px;
+    width: 320px
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
 }
 
 .btn-voltarInicio{
+    margin-top: 20px;
     text-decoration: none;
     color: #666666;
-    cursor: pointer;
 }
 
-.hero2 h2{
-    font-size: 30px;
-    margin-top: 50px;
-}
-
-.hero2 p{
-    color: #666666;
-    margin-top: 6px;
-    font-size: 16px;
-}
-
-.area-cadastro{
+.area-login{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-.area-cadastro label{
+.area-login h2{
     margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.area-login p{
+    font-size: 14px;
+    color: #666666;
+}
+
+.area-login label{
     font-size: 12px;
+    margin-top: 20px;
     font-weight: bold;
 }
 
-.area-cadastro input{
-    margin-top: 5px;
-    padding: 12px 10px;
+.area-login input{
+    margin-top: 10px;
     border-radius: 6px;
+    padding: 12px;
     border: 1px solid #666666;
     outline: none;
 }
 
-.btn-criarConta{
+.esqueciSenha{
+    text-decoration: none;
+    color: #017b70;
+    margin-left: auto;
     margin-top: 20px;
-    border-radius: 6px;
-    background-color: #017b70;
-    color: white;
     font-size: 12px;
-    padding: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    border: none;
 }
 
 .btn-entrar{
-    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: #017b70;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-criarConta{
+    margin-top: 10px;
     text-align: center;
 }
 
-.btn-entrar p{
-    font-size: 12px;
-}
-
-.btn-entrar a{
+.btn-criarConta a{
     text-decoration: none;
     color: #017b70;
 }
 
 @media(max-width: 768px){
     body{
-        display: flex;
         flex-wrap: wrap;
     }
-    
+
     .conteudo1{
-        height: 460px;
+        width: 100%;
         padding: 20px;
     }
 
     .hero1{
-        width: 100%;
+        height:220px;
         margin-top: 0;
-    }
-
-    .info-texto{
-        font-size: 12px;
     }
 
     .hero1 h1{
-        font-size: 36px;
+        margin: 20px auto;
+        font-size: 34px;
     }
 
     .hero1 p{
-        margin: 15px auto;
         font-size: 16px;
-    }
-
-    .bloco{
-        margin-top: 0;
+        margin-bottom: 10px;
     }
 
     .conteudo2{
-        height: 580px;
         padding: 20px;
-        margin-top: 0;
+        flex-wrap: wrap;
     }
 
     .hero2{
         width: 100%;
-        margin-top: 20px;
-    }
-
-    .hero2 h2{
-        margin-top: 30px;
+        margin-top: 0;
     }
 }
