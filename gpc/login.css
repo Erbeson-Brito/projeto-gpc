@@ -102,6 +102,7 @@ body{
 }
 
 .btn-entrar{
+    font-size: 16px;
     padding: 12px;
     border-radius: 6px;
     margin-top: 10px;
