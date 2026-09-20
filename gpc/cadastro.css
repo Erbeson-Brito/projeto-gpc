@@ -1,0 +1,178 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    background-color: white;
+}
+
+.conteudo1{
+    width: 100%;
+    height: 105dvh;
+    background-color: rgb(26, 46, 58);
+    padding: 20px 120px;
+}
+
+.hero1{
+    width: 320px;
+    margin-top: 30px;
+}
+
+.info-texto{
+    color: #d4e174;
+    font-size: 10px;
+}
+
+
+.hero1 h1{
+    margin: 10px auto;
+    color: #eafbfc;
+    font-size: 46px;
+}
+
+.hero1 p{
+    color: #a3b4bb;
+    font-size: 12px;
+}
+
+.bloco{
+    margin: 85px auto;
+}
+
+.bloco span{
+    color: #d4e174;
+}
+
+.bloco div{
+    color: #eafbfc;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.conteudo2{
+    width: 100%;
+    padding: 20px 120px;
+    flex-wrap: wrap;
+}
+
+.hero2{
+    width: 320px;
+    margin-top: 40px;
+}
+
+.btn-voltarInicio{
+    text-decoration: none;
+    color: #666666;
+    cursor: pointer;
+}
+
+.hero2 h2{
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.hero2 p{
+    color: #666666;
+    margin-top: 6px;
+    font-size: 16px;
+}
+
+.area-cadastro{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.area-cadastro label{
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.area-cadastro input{
+    margin-top: 5px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    outline: none;
+}
+
+.btn-criarConta{
+    margin-top: 20px;
+    border-radius: 6px;
+    background-color: #017b70;
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.btn-entrar{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-entrar p{
+    font-size: 12px;
+}
+
+.btn-entrar a{
+    text-decoration: none;
+    color: #017b70;
+}
+
+@media(max-width: 768px){
+    body{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .conteudo1{
+        height: 460px;
+        padding: 20px;
+    }
+
+    .hero1{
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .info-texto{
+        font-size: 12px;
+    }
+
+    .hero1 h1{
+        font-size: 36px;
+    }
+
+    .hero1 p{
+        margin: 15px auto;
+        font-size: 16px;
+    }
+
+    .bloco{
+        margin-top: 0;
+    }
+
+    .conteudo2{
+        height: 580px;
+        padding: 20px;
+        margin-top: 0;
+    }
+
+    .hero2{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .hero2 h2{
+        margin-top: 30px;
+    }
+}
