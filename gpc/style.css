@@ -31,6 +31,10 @@ nav a{
     color: #666666;
 }
 
+.nav-trilhas:hover{
+    color: #017b70;
+}
+
 .btn-entrar{
     background-color: #017b70;
     padding: 8px 18px;

@@ -1,0 +1,322 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px 120px;
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a{
+    text-decoration: none;
+}
+
+.nav-trilhas{
+    color: #017b70;
+}
+
+.btn-entrar{
+    background-color: #017b70;
+    padding: 8px 18px;
+    color: white;
+    border-radius: 10px;
+}
+
+.texto-trilhas{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 50px;
+    width: 50%;
+}
+
+.info-texto{
+    color: #017b70;
+    font-size: 10px;
+}
+
+.texto-trilhas h1{
+    font-size: 45px;
+}
+
+.texto-trilhas p{
+    font-size: 13px;
+    color: #666666;
+    line-height: 25px;
+}
+
+.heros{
+    display: flex;
+    margin-top: 50px;
+    gap: 25px;
+}
+
+.hero1{
+    display: flex;
+    flex-direction: column;
+    background-color: #e9f2f4;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.upBE{
+    display: flex;
+    justify-content: space-between;
+}
+
+.up-trilha{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.logo-hero1{
+    background-color: rgb(26, 46, 58);
+    color: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.hero1 h2{
+    margin: 20px auto;
+}
+
+.hero1 p{
+    font-size: 14px;
+    color: #666666;
+    line-height: 20px;
+}
+
+.timeline-BE{
+    list-style: none;
+    margin-top: 40px;
+    position: relative;
+}
+
+.timeline-BE::before{
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    bottom: 20px;
+    width: 1px;
+    background: #017b70;
+}
+
+.timeline-BE li{
+    display: flex;
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: 10px;
+    left: 20px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.timeline-BE li span{
+    position: absolute;
+    left: -20px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border: 1px solid #017b70;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-BE li:first-child span{
+    background-color: #017b70;
+    color: white;
+}
+
+.btn-criarConta{
+    background-color: rgb(26, 46, 58);
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hero2{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff4cc;
+}
+
+.upFE{
+    display: flex;
+    justify-content: space-between;
+}
+
+.up-trilha{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.logo-hero2{
+    background-color: #e6cc6c;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.hero2 h2{
+    margin: 20px auto;
+}
+
+.hero2 p{
+    color: #666666;
+    line-height: 20px;
+}
+
+.timeline-FE{
+    list-style: none;
+    margin-top: 40px;
+    position: relative;
+}
+
+.timeline-FE::before{
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    bottom: 20px;
+    width: 1px;
+    background: #017b70;
+}
+
+.timeline-FE li{
+    display: flex;
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: 10px;
+    left: 20px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.timeline-FE li span{
+    position: absolute;
+    left: -20px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border: 1px solid #017b70;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-FE li:first-child span{
+    background-color: #017b70;
+    color: white;
+}
+
+.btn-criarConta{
+    background-color: rgb(26, 46, 58);
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modo-visitante{
+    display: flex;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 14px;
+    border: 1px solid #c5c5c5
+}
+
+.modo-visitante p{
+    margin-right: auto;
+}
+
+.modo-visitante a{
+    margin-left: auto;
+}
+
+strong{
+    color: black;
+}
+
+.modo-visitante p{
+    color: #666666;
+}
+
+.modo-visitante a{
+    text-decoration: none;
+    color: #017b70;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    color: #666666;
+    font-size: 12px;
+}
+
+@media(max-width: 768px){
+    body{
+        padding: 20px;
+    }
+
+    .texto-trilhas{
+        width: 100%;
+    }
+
+    .info-texto{
+        font-size: 12px;
+    }
+
+    .texto-trilhas h1{
+        font-size: 35px;
+    }
+
+    .texto-trilhas p{
+        font-size: 16px;
+    }
+
+    .heros{
+        flex-wrap: wrap;
+    }
+
+    .modo-visitante{
+        align-items: first baseline;
+        font-size: 16px;
+        text-wrap: wrap;
+    }
+
+    .modo-visitante p{
+        width: 190px;
+    }
+}
