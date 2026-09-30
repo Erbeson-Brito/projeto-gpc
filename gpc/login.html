@@ -23,7 +23,7 @@
     </section>
     <section class="conteudo2">
         <div class="hero2">
-            <form action="index.html">
+            <form id="formLogin">
                 <div class="cabecalho">
                     <a href="index.html" class="btn-voltarInicio">← Voltar ao início</a>
                     <img src="midia/GPClogo.png" alt="logo-gpc">
@@ -32,10 +32,10 @@
                     <h2>Que bom ter você de volta.</h2>
                     <p>Entre para continuar sua jornada.</p>
                     <label for="email">E-mail</label>
-                    <input type="email" placeholder="voce@gmail.com" required>
+                    <input id="email" type="email" placeholder="voce@gmail.com" required>
                     
-                    <label for="password">Senha</label>
-                    <input type="password" placeholder="Digite sua senha" required>
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" placeholder="Digite sua senha" required>
                     
                     <a href="#" class="esqueciSenha">Esqueci minha senha</a>
                     <button class="btn-entrar">Entrar</button>
@@ -46,6 +46,7 @@
             </form>
         </div>
     </section>
-    
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
