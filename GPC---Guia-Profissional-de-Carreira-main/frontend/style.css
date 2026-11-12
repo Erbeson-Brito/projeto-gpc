@@ -1,0 +1,282 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 120px;
+    width: 100%;
+    max-width: 100%;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+.nav-trilhas{
+    color: #666666;
+}
+
+.nav-trilhas:hover{
+    color: #017b70;
+}
+
+.btn-entrar{
+    background-color: #017b70;
+    padding: 8px 18px;
+    color: white;
+    border-radius: 10px;
+}
+
+.conteudo1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 120px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.hero1{
+    width: 400px;
+}
+.gpc-texto{
+    color: #017b70;
+    font-size: 10px;
+}
+
+.hero1 h1{
+    font-size: 50px;
+    margin: 10px auto;
+}
+
+.hero1 p{
+    font-size: 14px;
+    color: #666666;
+}
+
+.opcoes{
+    margin-top: 30px;
+    align-items: center;
+    display: flex;
+    gap: 20px;
+}
+
+.opcoes a{
+    font-size: 14px;
+}
+
+.explorar-trilhas{
+    text-decoration: none;
+    color: #017b70;
+}
+
+.btn-criarConta{
+    padding: 8px 18px;
+    background-color: #017b70;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.hero2{
+    width: 410px;
+    height: 260px;
+    background-color: rgb(26, 46, 58);
+    border-radius: 25px;
+    padding: 30px;
+}
+
+.card{
+    width: 100%;
+    height: 120px;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.card-icon{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+}
+.icon{
+    width: 8px;
+    height: 8px;
+    background-color: #017b70;
+    border-radius: 100%;
+}
+
+.card p{
+    font-size: 14px;
+}
+
+.card h2{
+    font-size: 16px;
+    margin: 15px auto;
+}
+
+.progresso{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666666;
+}
+
+.barra-progresso{
+    width: 100%;
+    height: 4px;
+    background-color: #666666;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.sessoes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+    position: relative;
+    margin-left: auto;
+    top: 50px;
+}
+
+.sessoes::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: #6ed3d9;
+    z-index: 0;
+}
+
+.logica, .java, .sql{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+}
+
+.logica, .java, .sql{
+    border: 1.5px solid #6ed3d9;
+    background: rgb(49, 75, 91);
+    color: white;
+}
+
+.conteudo2{
+    padding: 20px 120px;
+    background-color: #f7f9f8;
+}
+
+.inform{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.inform p{
+    font-size: 14px;
+    color: #017b70;
+}
+
+.inform h2{
+    margin-top: 20px;
+}
+
+.card-fim{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.card1, .card2, .card3{
+    width: 320px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card1 p, .card2 p, .card3 p{
+    margin-top: 20px;
+    color: #666666;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 100px;
+    font-size: 12px;
+    color: #666666;
+}
+
+@media(max-width: 768px){
+    .cabecalho{
+        padding: 20px;
+    }
+
+    .conteudo1{
+        padding: 20px;
+    }
+
+    .hero1 h1{
+        font-size: 38px;
+    }
+
+    .hero1 p{
+        font-size: 16px;
+    }
+
+    .gpc-texto{
+        font-size: 12px;
+    }
+    .conteudo2{
+        padding: 20px;
+    }
+
+    .btn-criarConta{
+        margin-bottom: 10px;
+    }
+
+    .inform p{
+        font-size: 12px;
+    }
+
+    .inform h2{
+        font-size: 32px;
+    }
+
+    .card1, .card2, .card3{
+        width: 100%;
+    }
+
+    footer{
+        padding: 20px;
+    }
+}

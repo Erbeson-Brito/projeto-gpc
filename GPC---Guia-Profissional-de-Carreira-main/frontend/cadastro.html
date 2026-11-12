@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="midia/GPCfavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <section class="conteudo1">
+        <header class="cabecalho">
+            <img src="midia/GPClogo.png" alt="logo-gpc">
+        </header>
+        <div class="hero1">
+            <div class="info-texto">
+                COMECE SUA JORNADA
+            </div>
+            <h1>
+                Transforme objetivos em próximos passos.
+            </h1>
+            <p>
+                Cria sua conta para realizar atividades, acompanhar sua evolução e construir seu caminho profissional.
+            </p>
+            <div class="bloco">
+                <div>
+                    <span>✔</span> Trilhas organizadas
+                </div>
+                <div>
+                    <span>✔</span> Atividades práticas
+                </div>
+                <div>
+                    <span>✔</span> Progresso salvo
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="conteudo2">
+        <div class="hero2">
+            <form id="formCadastro">
+                <a href="index.html" class="btn-voltarInicio">← Voltar ao início</a>
+                <h2>
+                    Crie sua conta
+                </h2>
+                <p>
+                    É rápido e gratuito para começar
+                </p>
+                <div class="area-cadastro">
+                    <label for="nome">Nome completo</label>
+                    <input id="nome" type="text" placeholder="Como podemos te chamar?" required>
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" placeholder="voce@gmail.com" required>
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" placeholder="Crie uma senha" required>
+                    <label for="confirmarSenha">Confirme sua senha</label>
+                    <input id="confirmarSenha" type="password" placeholder="Digite sua senha novamente" required>
+                    <button class="btn-criarConta">Criar minha conta →</button>
+                    <div class="btn-entrar">
+                        <p>Já tem uma conta? <a href="login.html">Entrar</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="js/api.js"></script>
+    <script src="js/cadastro.js"></script>
+</body>
+</html>
