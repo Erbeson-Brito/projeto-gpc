@@ -27,7 +27,11 @@ body{
 }
 
 .nav-trilhas{
-    color: #017b70;
+    color: #666666;
+}
+
+.nav-trilhas:hover{
+    color:  #017b70;
 }
 
 .btn-entrar{
@@ -279,7 +283,7 @@ strong{
 
 footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 80px;
     color: #666666;
     font-size: 12px;

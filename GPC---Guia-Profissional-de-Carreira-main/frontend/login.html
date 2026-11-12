@@ -24,7 +24,7 @@
     </section>
     <section class="conteudo2">
         <div class="hero2">
-            <form action="index.html">
+            <form id="formLogin">
                 <div class="cabecalho">
                     <a href="index.html" class="btn-voltarInicio">← Voltar ao início</a>
                 </div>
@@ -32,13 +32,13 @@
                     <h2>Que bom ter você de volta.</h2>
                     <p>Entre para continuar sua jornada.</p>
                     <label for="email">E-mail</label>
-                    <input type="email" placeholder="voce@gmail.com" required>
+                    <input type="email" id="email" placeholder="voce@gmail.com" required>
                     
-                    <label for="password">Senha</label>
-                    <input type="password" placeholder="Digite sua senha" required>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
                     
                     <a href="#" class="esqueciSenha">Esqueci minha senha</a>
-                    <button class="btn-entrar">Entrar</button>
+                    <button type="submit" class="btn-entrar">Entrar</button>
                     <div class="btn-criarConta">
                         <p>Ainda não tem uma conta? <a href="cadastro.html">Criar conta</a></p>
                     </div>
@@ -46,6 +46,7 @@
             </form>
         </div>
     </section>
-    
+    <script src="gpc-loader.js"></script>
+<script src="login.js"></script>
 </body>
 </html>

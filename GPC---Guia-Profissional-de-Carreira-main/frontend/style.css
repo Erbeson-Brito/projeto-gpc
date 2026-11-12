@@ -230,10 +230,12 @@ nav a{
 
 footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 6px 100px;
     font-size: 12px;
     color: #666666;
+    background-color: #f7f9f8;
+
 }
 
 @media(max-width: 768px){
