@@ -1,0 +1,162 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    background-color: white;
+}
+
+.conteudo1{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(26, 46, 58);
+    padding: 20px 120px;
+}
+
+.hero1{
+    width: 320px;
+    height: 480px;
+    margin-top: 120px;
+}
+
+.info-texto{
+    font-size: 12px;
+    color: #d4e174;
+}
+
+.hero1 h1{
+    margin: 50px auto;
+    font-size: 45px;
+    color: #eafbfc;
+}
+
+.hero1 p{
+    font-size: 16px;
+    color: #a3b4bb;
+    line-height: 30px;
+}
+
+.conteudo2{
+    width: 100%;
+    height: 100%;
+    padding: 20px 120px;
+    flex-wrap: wrap;
+}
+
+.hero2{
+    width: 320px
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-voltarInicio{
+    margin-top: 20px;
+    text-decoration: none;
+    color: #666666;
+}
+
+.area-login{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.area-login h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.area-login p{
+    font-size: 14px;
+    color: #666666;
+}
+
+.area-login label{
+    font-size: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.area-login input{
+    margin-top: 10px;
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #666666;
+    outline: none;
+}
+
+.esqueciSenha{
+    text-decoration: none;
+    color: #017b70;
+    margin-left: auto;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.btn-entrar{
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: #017b70;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-criarConta{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn-criarConta a{
+    text-decoration: none;
+    color: #017b70;
+}
+
+@media(max-width: 768px){
+    body{
+        flex-wrap: wrap;
+    }
+
+    .conteudo1{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .hero1{
+        height:220px;
+        margin-top: 0;
+    }
+
+    .hero1 h1{
+        margin: 20px auto;
+        font-size: 34px;
+    }
+
+    .hero1 p{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .conteudo2{
+        padding: 20px;
+        flex-wrap: wrap;
+    }
+
+    .hero2{
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+}
