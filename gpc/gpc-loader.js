@@ -2,14 +2,14 @@
  * GPC Loader - tela de carregamento com a árvore do GPC crescendo de baixo pra cima.
  *
  * COMO USAR (resumo):
- *   1) Coloque gpc-loader.js e midia/GPClogo.png na mesma pasta do seu HTML
+ *   1) Coloque gpc-loader.js na mesma pasta do seu HTML e a logo em midia/GPClogo.png
  *   2) No HTML, antes de </body>:   <script src="gpc-loader.js"></script>
  *   3) Depois que o usuário fizer login, chame:
  *
  *        await GPCLoader.durante(async () => {
  *          // aqui vai a sua chamada ao backend (fetch do login etc.)
  *        });
- *        window.location.href = 'index.html';   // e então vá pra próxima página
+ *        window.location.href = 'home.html';   // e então vá pra próxima página
  *
  * A árvore cresce enquanto o trabalho acontece e chega a 100% quando ele termina.
  * Ela fica na tela pelo menos 2,5 s pra animação aparecer direito (dá pra mudar).

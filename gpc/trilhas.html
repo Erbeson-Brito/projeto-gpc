@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="midia/GPCfavicon.png" type="image/x-icon">
     <link rel="stylesheet" href="trilhas.css">
-    <title>Trilhas</title>
+    <title>Trilhas · GPC</title>
 </head>
 <body>
     <header class="cabecalho">
@@ -15,14 +15,14 @@
             <a href="login.html" class="btn-entrar" id="btnConta">Entrar</a>
         </nav>
     </header>
-    <section class="conteudo 1">
+    <section class="conteudo">
         <div class="texto-trilhas">
             <div class="info-texto">EXPLORE ANTES DE COMEÇAR</div>
             <h1>Escolha por onde sua jornada vai começar.</h1>
             <p>As trilhas mostram o caminho completo de aprendizado. Crie sua conta quando quiser realizar atividades e salvar sua evolução.</p>
         </div>
         <div class="heros">
-            <div class="hero1">
+            <div class="hero1" data-trilha="backend">
                 <div class="upBE">
                     <div class="logo-hero1">&gt;_</div>
                     <div class="up-trilha">TRILHA</div>
@@ -34,10 +34,10 @@
                         <span>1</span> Lógica de Programação
                     </li>
                     <li>
-                        <span>2</span>POO
+                        <span>2</span> Java Básico
                     </li>
                     <li>
-                        <span>3</span> Java
+                        <span>3</span> Programação Orientada a Objetos
                     </li>
                     <li>
                         <span>4</span> Git e GitHub
@@ -49,9 +49,13 @@
                         <span>6</span> Spring Boot e API REST
                     </li>
                 </ul>
+                <div class="trilha-prog" hidden>
+                    <div class="barra-mini"><div></div></div>
+                    <span class="trilha-prog-txt"></span>
+                </div>
                 <a href="cadastro.html" class="btn-criarConta">Criar conta para começar →</a>
             </div>
-            <div class="hero2">
+            <div class="hero2" data-trilha="frontend">
                 <div class="upFE">
                     <div class="logo-hero2">&lt; / &gt;</div>
                     <div class="up-trilha">TRILHA</div>
@@ -78,6 +82,10 @@
                         <span>6</span> APIs e Frameworks
                     </li>
                 </ul>
+                <div class="trilha-prog" hidden>
+                    <div class="barra-mini"><div></div></div>
+                    <span class="trilha-prog-txt"></span>
+                </div>
                 <a href="cadastro.html" class="btn-criarConta">Criar conta para começar →</a>
             </div>
         </div>
@@ -91,8 +99,9 @@
             </div>
         </footer>
     </section>
-    <script src="gpc-loader.js"></script>
-    <script src="api.js"></script>
+    <script src="dados.js"></script>
+    <script src="store.js"></script>
+    <script src="ui.js"></script>
     <script src="trilhas.js"></script>
 </body>
 </html>

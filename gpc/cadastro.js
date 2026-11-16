@@ -1,65 +1,42 @@
-const formCadastro = document.getElementById("formCadastro");
+// Cadastro: cria a conta na "API" local (store.js), já deixa o aluno logado e leva às trilhas.
+(function () {
+    const form = document.getElementById('formCadastro');
+    const erro = document.getElementById('erroCadastro');
+    const params = new URLSearchParams(location.search);
 
-function mostrarMensagem(texto, tipo) {
-  const el = document.getElementById("mensagemAlert");
-  if (!el) return;
-  el.textContent = texto;
-  el.style.display = "block";
-  el.classList.remove("sucesso", "erro");
-  el.classList.add(tipo);
-}
+    // só aceita voltar para páginas do próprio site (ex.: "trilha.html?id=backend")
+    const proxima = (params.get('next') || '').match(/^[\w-]+\.html(\?[\w=&%.-]*)?$/) ? params.get('next') : null;
 
-formCadastro.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    // quem já está logado não precisa criar conta
+    if (GPC.usuarioAtual()) { location.replace(proxima || 'index.html'); return; }
+    if (proxima) document.getElementById('linkLogin').href = 'login.html?next=' + encodeURIComponent(proxima);
 
-  const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const senha = document.getElementById("senha").value;
-  const confirmarSenha = document.getElementById("confirmarSenha").value;
+    function mostrarErro(texto) {
+        erro.textContent = texto;
+        erro.hidden = false;
+    }
 
-  if (!nome || !email || !senha) {
-    mostrarMensagem("Preencha todos os campos!", "erro");
-    return;
-  }
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        erro.hidden = true;
 
-  if (senha !== confirmarSenha) {
-    mostrarMensagem("As senhas não coincidem!", "erro");
-    return;
-  }
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const confirmar = document.getElementById('confirmarSenha').value;
 
-  try {
-    const usuario = await GPCLoader.durante(async () => {
-      const resposta = await fetch(`${API_URL}/api/usuarios`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha })
-      });
+        if (senha !== confirmar) {
+            mostrarErro('As senhas não coincidem.');
+            document.getElementById('confirmarSenha').focus();
+            return;
+        }
 
-      if (!resposta.ok) {
-        const erro = await resposta.text();
-        throw new Error(erro || "Erro ao cadastrar");
-      }
-
-      const texto = await resposta.text();
-      try {
-        return JSON.parse(texto);
-      } catch (e) {
-        return { nome, email, mensagem: texto };
-      }
-    }, {
-      texto: "Criando sua conta...",
-      imagem: "midia/GPCLogo.png",
-      minimo: 2500,
-      esconderNoFim: true
+        try {
+            const usuario = GPC.cadastrar({ nome, email, senha });
+            GPCUI.avisoProximaPagina(`Conta criada! Bem-vindo(a) ao GPC, ${GPCUI.primeiroNome(usuario)}.`);
+            location.href = proxima || 'trilhas.html';
+        } catch (err) {
+            mostrarErro(GPCUI.mensagemDeErro(err));
+        }
     });
-
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-
-    mostrarMensagem("Cadastro realizado com sucesso!", "sucesso");
-    await new Promise(r => setTimeout(r, 1500));
-    window.location.href = "index.html";
-
-  } catch (erro) {
-    mostrarMensagem(erro.message, "erro");
-  }
-});
+})();

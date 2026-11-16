@@ -296,3 +296,37 @@ footer{
         padding: 20px;
     }
 }
+/* ---------- ligação com a conta (links extras no menu e progresso real) ---------- */
+.nav-extra{
+    color: #666666;
+}
+
+.nav-extra:hover{
+    color: #017b70;
+}
+
+.barra-progresso{
+    overflow: hidden;
+}
+
+.barra-progresso div{
+    height: 100%;
+    width: 0;
+    background: #6ed3d9;
+    border-radius: 10px;
+    transition: width .4s ease;
+}
+
+@media(max-width: 768px){
+    nav{
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .barra-progresso div{
+        transition: none;
+    }
+}

@@ -344,3 +344,59 @@ footer{
         width: 190px;
     }
 }
+/* ---------- ligação com a conta (links extras, progresso e estados da linha do tempo) ---------- */
+.nav-extra{
+    color: #666666;
+}
+
+.nav-extra:hover{
+    color: #017b70;
+}
+
+.timeline-BE li span.feito,
+.timeline-FE li span.feito{
+    background-color: #017b70;
+    color: white;
+}
+
+.timeline-BE li span.atual,
+.timeline-FE li span.atual{
+    background-color: #017b70;
+    color: white;
+    box-shadow: 0 0 0 3px rgba(1, 123, 112, 0.25);
+}
+
+.trilha-prog{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.trilha-prog[hidden]{
+    display: none;
+}
+
+.barra-mini{
+    height: 6px;
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-mini div{
+    height: 100%;
+    width: 0;
+    background: #017b70;
+    border-radius: 10px;
+}
+
+@media(max-width: 768px){
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px 16px;
+    }
+}

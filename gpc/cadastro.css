@@ -17,7 +17,7 @@ body{
     padding: 20px 120px;
 }
 
-.cabecalho img{
+.conteudo1 img{
     width: 120px;
 }
 
@@ -60,7 +60,7 @@ body{
 
 .conteudo2{
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     padding: 20px 120px;
     flex-wrap: wrap;
 }
@@ -128,22 +128,6 @@ body{
     background-color: #01655C;
 }
 
-.mensagemAlert {
-  display: none;
-  margin-top: 12px;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 600;
-}
-
-.mensagemAlert.erro {
-  display: block;
-  color: #b3261e;
-  background: #fdecea;
-  border: 1px solid #f5c6c2;
-}
-
 .btn-entrar{
     margin-top: 20px;
     text-align: center;
@@ -209,4 +193,12 @@ body{
     .hero2 h2{
         margin-top: 30px;
     }
+}
+/* mensagem de erro do formulário */
+.hero2 .area-login .erro-form,
+.hero2 .area-cadastro .erro-form{
+    color: #b3261e;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-top: 14px;
 }
