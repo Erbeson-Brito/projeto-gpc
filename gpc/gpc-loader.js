@@ -2,14 +2,14 @@
  * GPC Loader - tela de carregamento com a árvore do GPC crescendo de baixo pra cima.
  *
  * COMO USAR (resumo):
- *   1) Coloque gpc-loader.js e arvore-gpc.png na mesma pasta do seu HTML
+ *   1) Coloque gpc-loader.js e midia/GPClogo.png na mesma pasta do seu HTML
  *   2) No HTML, antes de </body>:   <script src="gpc-loader.js"></script>
  *   3) Depois que o usuário fizer login, chame:
  *
  *        await GPCLoader.durante(async () => {
  *          // aqui vai a sua chamada ao backend (fetch do login etc.)
  *        });
- *        window.location.href = 'home.html';   // e então vá pra próxima página
+ *        window.location.href = 'index.html';   // e então vá pra próxima página
  *
  * A árvore cresce enquanto o trabalho acontece e chega a 100% quando ele termina.
  * Ela fica na tela pelo menos 2,5 s pra animação aparecer direito (dá pra mudar).
@@ -17,7 +17,7 @@
 (function (global) {
   const ID = 'gpc-loader-overlay';
   let overlay, frente, texto, percentual, barra;
-  let atual = 0, alvo = 0, raf = null, caminhoImagem = 'arvore-gpc.png';
+  let atual = 0, alvo = 0, raf = null, caminhoImagem = 'midia/GPClogo.png';
 
   const CSS = `
   #${ID}{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
@@ -157,7 +157,7 @@
     /**
      * Mostra o loading enquanto 'trabalho' (uma função async ou uma Promise) executa.
      * Devolve o resultado do trabalho. Se der erro, esconde o overlay e repassa o erro.
-     * opcoes: { minimo: 2500 (ms), texto: 'Entrando...', imagem: 'arvore-gpc.png', esconderNoFim: false }
+     * opcoes: { minimo: 2500 (ms), texto: 'Entrando...', imagem: 'midia/GPClogo.png', esconderNoFim: false }
      */
     async durante(trabalho, opcoes = {}) {
       const minimo = opcoes.minimo ?? 2500;

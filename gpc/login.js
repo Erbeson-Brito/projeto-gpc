@@ -1,5 +1,11 @@
 const formLogin = document.getElementById("formLogin");
 
+function mostrarMensagem(texto, tipo = "erro") {
+    const el = document.getElementById("mensagemAlert");
+    el.textContent = texto;
+    el.className = "mensagemAlert " + tipo;
+}
+
 // Erro de login "esperado" (senha errada etc.), diferente de falha de conexão
 class ErroLogin extends Error {}
 
@@ -31,7 +37,7 @@ formLogin.addEventListener("submit", async (event) => {
             return await resposta.json();
         }, {
             texto: "Entrando...",
-            imagem: "midia/arvore-gpc.png" // caminho da imagem da árvore
+            imagem: "midia/GPClogo.png" // caminho da imagem da árvore
         });
 
         localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -40,10 +46,10 @@ formLogin.addEventListener("submit", async (event) => {
         // o loading já sumiu sozinho; agora mostramos o erro
         botao.disabled = false;
         if (erro instanceof ErroLogin) {
-            alert(erro.message);
+            mostrarMensagem(erro.message, "erro");
         } else {
             console.error("Erro ao entrar:", erro);
-            alert("Não foi possível conectar ao servidor.");
+            mostrarMensagem("Não foi possível conectar ao servidor.", "erro");
         }
     }
 });

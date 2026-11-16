@@ -17,6 +17,10 @@ body{
     max-width: 100%;
 }
 
+.cabecalho img{
+    width: 120px;
+}
+
 nav{
     display: flex;
     align-items: center;
@@ -40,6 +44,10 @@ nav a{
     padding: 8px 18px;
     color: white;
     border-radius: 10px;
+}
+
+.btn-entrar:hover{
+    background-color: #01655C
 }
 
 .conteudo1{
@@ -83,7 +91,11 @@ nav a{
 
 .explorar-trilhas{
     text-decoration: none;
-    color: #017b70;
+    color: #666666;
+}
+
+.explorar-trilhas:hover{
+    color: #01655C
 }
 
 .btn-criarConta{
@@ -92,6 +104,8 @@ nav a{
     color: white;
     border-radius: 10px;
     text-decoration: none;
+}.btn-criarConta:hover{
+    background-color: #01655C;
 }
 
 .hero2{

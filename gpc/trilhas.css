@@ -16,6 +16,10 @@ body{
     justify-content: space-between;
 }
 
+.cabecalho img{
+    width: 120px;
+}
+
 .nav-links{
     display: flex;
     align-items: center;
@@ -26,11 +30,11 @@ body{
     text-decoration: none;
 }
 
-.nav-trilhas{
+.nav-inicio{
     color: #666666;
 }
 
-.nav-trilhas:hover{
+.nav-inicio:hover{
     color:  #017b70;
 }
 
@@ -39,6 +43,10 @@ body{
     padding: 8px 18px;
     color: white;
     border-radius: 10px;
+}
+
+.btn-entrar:hover{
+    background-color: #01655C
 }
 
 .texto-trilhas{
@@ -151,7 +159,7 @@ body{
 }
 
 .btn-criarConta{
-    background-color: rgb(26, 46, 58);
+    background-color: #017b70;
     padding: 10px;
     text-decoration: none;
     color: white;
@@ -159,6 +167,10 @@ body{
     font-size: 14px;
     text-align: center;
     margin-top: 20px;
+}
+
+.btn-criarConta:hover{
+    background-color: #01655C
 }
 
 .hero2{
@@ -240,14 +252,18 @@ body{
 }
 
 .btn-criarConta{
-    background-color: rgb(26, 46, 58);
+    background-color: #017b70;
     padding: 10px;
     text-decoration: none;
     color: white;
     border-radius: 10px;
     font-size: 14px;
-    text-align: center;
     margin-top: 20px;
+    align-items: center;
+}
+
+.btn-criarConta:hover{
+    background-color: #01655C
 }
 
 .modo-visitante{
@@ -258,6 +274,10 @@ body{
     padding: 20px;
     font-size: 14px;
     border: 1px solid #c5c5c5
+}
+
+.modo-visitante a:hover{
+    text-decoration: underline;
 }
 
 .modo-visitante p{
