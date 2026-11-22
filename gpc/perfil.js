@@ -11,6 +11,8 @@
     const inEmail = h('input', { type: 'email', id: 'email', autocomplete: 'email', value: usuario.email });
     const inObjetivo = h('input', { type: 'text', id: 'objetivo', maxlength: '120', placeholder: 'Ex.: ser desenvolvedor backend', value: usuario.objetivo });
     const selNivel = h('select', { id: 'nivel' }, GPC.NIVEIS.map((n) => h('option', { value: n, selected: n === usuario.nivel }, n)));
+    inObjetivo.disabled = true;
+    selNivel.disabled = true;
 
     const erroConta = h('p', { class: 'erro-campo', role: 'alert', hidden: true });
     const erroAluno = h('p', { class: 'erro-campo', role: 'alert', hidden: true });
@@ -21,10 +23,10 @@
     }
     desenharPapeis();
 
-    function salvar(fn, erroEl, mensagem) {
+    async function salvar(fn, erroEl, mensagem) {
         erroEl.hidden = true;
         try {
-            usuario = fn();
+            usuario = await fn();
             GPCUI.montarCabecalho('perfil'); // o nome pode ter mudado
             GPCUI.toast(mensagem);
         } catch (e) {
@@ -33,23 +35,23 @@
         }
     }
 
-    const formConta = h('form', { novalidate: true, onsubmit: (e) => {
+    const formConta = h('form', { novalidate: true, onsubmit: async (e) => {
         e.preventDefault();
-        salvar(() => GPC.atualizarConta(usuario.id, { nome: inNome.value, email: inEmail.value }), erroConta, 'Conta atualizada.');
+        await salvar(() => GPC.atualizarConta(usuario.id, { nome: inNome.value, email: inEmail.value }), erroConta, 'Conta atualizada.');
     } },
         h('div', { class: 'campo' }, h('label', { for: 'nome' }, 'Nome'), inNome),
         h('div', { class: 'campo' }, h('label', { for: 'email' }, 'E-mail'), inEmail),
         erroConta, papeis,
         h('div', { class: 'acoes-form' }, h('button', { class: 'btn btn-pri', type: 'submit' }, 'Salvar conta')));
 
-    const formAluno = h('form', { novalidate: true, onsubmit: (e) => {
+    const formAluno = h('form', { novalidate: true, onsubmit: async (e) => {
         e.preventDefault();
-        salvar(() => GPC.atualizarAluno(usuario.id, { objetivo: inObjetivo.value, nivel: selNivel.value }), erroAluno, 'Perfil de aluno atualizado.');
+        await salvar(() => GPC.atualizarAluno(usuario.id, { objetivo: inObjetivo.value, nivel: selNivel.value }), erroAluno, 'Perfil de aluno atualizado.');
     } },
         h('div', { class: 'campo' }, h('label', { for: 'objetivo' }, 'Objetivo profissional'), inObjetivo),
         h('div', { class: 'campo' }, h('label', { for: 'nivel' }, 'Nível de experiência'), selNivel),
         erroAluno,
-        h('div', { class: 'acoes-form' }, h('button', { class: 'btn btn-pri', type: 'submit' }, 'Salvar perfil')));
+        h('div', { class: 'acoes-form' }, h('button', { class: 'btn btn-pri', type: 'submit', disabled: true }, 'Salvar perfil')));
 
     async function excluirConta() {
         const confirmado = await GPCUI.confirmar({
@@ -59,7 +61,7 @@
         });
         if (!confirmado) return;
         try {
-            GPC.excluirUsuario(usuario.id);
+            await GPC.excluirUsuario(usuario.id);
             GPCUI.avisoProximaPagina('Sua conta foi excluída.');
             location.href = 'index.html';
         } catch (e) {
@@ -70,6 +72,7 @@
     raiz.replaceChildren(
         h('div', { class: 'eyebrow' }, 'Sua conta'),
         h('h1', {}, 'Meu perfil'),
+        h('p', { class: 'sm' }, 'A API ainda não oferece salvamento destes campos. Eles serão habilitados quando o endpoint de perfil de aluno estiver disponível.'),
         h('div', { class: 'colunas' },
             h('section', { class: 'cartao', 'aria-labelledby': 'tit-conta' }, h('h2', { id: 'tit-conta' }, 'Conta'), formConta),
             h('section', { class: 'cartao', 'aria-labelledby': 'tit-aluno' }, h('h2', { id: 'tit-aluno' }, 'Perfil de aluno'), formAluno)),

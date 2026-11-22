@@ -1,4 +1,4 @@
-// Cadastro: cria a conta na "API" local (store.js), já deixa o aluno logado e leva às trilhas.
+// Cadastro: cria a conta na API e leva o aluno ao destino escolhido.
 (function () {
     const form = document.getElementById('formCadastro');
     const erro = document.getElementById('erroCadastro');
@@ -16,7 +16,7 @@
         erro.hidden = false;
     }
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         erro.hidden = true;
 
@@ -32,10 +32,13 @@
         }
 
         try {
-            const usuario = GPC.cadastrar({ nome, email, senha });
+            const botao = form.querySelector('button[type="submit"]');
+            botao.disabled = true;
+            const usuario = await GPC.cadastrar({ nome, email, senha });
             GPCUI.avisoProximaPagina(`Conta criada! Bem-vindo(a) ao GPC, ${GPCUI.primeiroNome(usuario)}.`);
             location.href = proxima || 'trilhas.html';
         } catch (err) {
+            form.querySelector('button[type="submit"]').disabled = false;
             mostrarErro(GPCUI.mensagemDeErro(err));
         }
     });

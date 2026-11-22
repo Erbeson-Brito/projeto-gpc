@@ -166,15 +166,18 @@
           h('button', { class: perigo ? 'btn btn-perigo-pri' : 'btn btn-pri', type: 'submit' }, rotuloConfirmar)));
       const dlg = h('dialog', { class: 'dlg', 'aria-labelledby': idTitulo }, form);
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         try {
-          const r = aoConfirmar ? aoConfirmar() : true;
+          const botao = form.querySelector('button[type="submit"]');
+          botao.disabled = true;
+          const r = aoConfirmar ? await aoConfirmar() : true;
           resultado = r === undefined ? true : r;
           dlg.close();
         } catch (err) {
           erro.textContent = mensagemDeErro(err);
           erro.hidden = false;
+          form.querySelector('button[type="submit"]').disabled = false;
         }
       });
       dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });

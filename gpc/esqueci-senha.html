@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="recuperacao.css">
+        <link rel="shortcut icon" href="midia/GPCfavicon.png" type="image/x-icon">
+        <title>Esqueci minha senha · GPC</title>
+    </head>
+    <body>
+        <section class="conteudo1">
+            <img src="midia/GPClogo.png" alt="logo-gpc">
+            <div class="hero1">
+                <div class="info-texto">RECUPERAR ACESSO</div>
+                <h1>Acontece com todo mundo.</h1>
+                <p>
+                    Informe o e-mail da sua conta e enviaremos um link para você criar uma nova senha.
+                </p>
+            </div>
+        </section>
+        <section class="conteudo2">
+            <div class="hero2">
+                <div class="cabecalho">
+                    <a href="login.html" class="btn-voltarInicio" id="linkVoltar">← Voltar ao login</a>
+                </div>
+
+                <!-- passo 1: pedir o link -->
+                <form id="formEsqueci" class="area-login" novalidate>
+                    <h2>Esqueceu sua senha?</h2>
+                    <p class="texto-apoio">Digite o e-mail cadastrado para receber o link de redefinição.</p>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="voce@gmail.com" autocomplete="email" required>
+
+                    <p class="erro-form" id="erroEsqueci" role="alert" hidden></p>
+                    <button type="submit" class="btn-entrar" id="btnEnviar">Enviar link de recuperação</button>
+                    <div class="voltar-login">Lembrou? <a href="login.html" id="linkLogin">Entrar</a></div>
+                </form>
+
+                <!-- passo 2: confirmação -->
+                <div id="confirmacao" class="area-login" hidden>
+                    <h2>Confira seu e-mail</h2>
+                    <div class="caixa-sucesso" id="msgConfirmacao" role="status"></div>
+                    <p class="texto-apoio" style="margin-top:16px">
+                        O link vale por 30 minutos e só pode ser usado uma vez. Não chegou? Veja o spam ou
+                        <a href="esqueci-senha.html" id="outroPedido" style="color:#017b70">peça outro link</a>.
+                    </p>
+
+                    <div class="caixa-dev" id="caixaDev" hidden>
+                        <strong>Modo desenvolvimento</strong>
+                        O backend ainda não envia e-mails, então o link aparece aqui (e no console do backend):
+                        <a id="linkDev" href="#"></a>
+                    </div>
+
+                    <a href="login.html" class="btn-entrar btn-link" style="margin-top:20px">Voltar ao login</a>
+                </div>
+            </div>
+        </section>
+        <script src="dados.js"></script>
+        <script src="api.js"></script>
+        <script src="store.js"></script>
+        <script src="ui.js"></script>
+        <script src="esqueci-senha.js"></script>
+    </body>
+</html>

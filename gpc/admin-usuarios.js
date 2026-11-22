@@ -15,15 +15,12 @@
     async function editar(u) {
         const nome = h('input', { type: 'text', id: 'ed-nome', value: u.nome });
         const email = h('input', { type: 'email', id: 'ed-email', value: u.email });
-        const status = h('select', { id: 'ed-status' },
-            ['ATIVA', 'INATIVA'].map((s) => h('option', { value: s, selected: s === u.status }, s === 'ATIVA' ? 'Ativa' : 'Inativa')));
         const corpo = h('div', {},
             h('div', { class: 'campo' }, h('label', { for: 'ed-nome' }, 'Nome'), nome),
-            h('div', { class: 'campo' }, h('label', { for: 'ed-email' }, 'E-mail'), email),
-            h('div', { class: 'campo' }, h('label', { for: 'ed-status' }, 'Status da conta'), status));
+            h('div', { class: 'campo' }, h('label', { for: 'ed-email' }, 'E-mail'), email));
         const salvo = await GPCUI.dialogo({
             titulo: `Editar usuário #${u.id}`, corpo, rotuloConfirmar: 'Salvar',
-            aoConfirmar: () => GPC.editarUsuario(u.id, { nome: nome.value, email: email.value, status: status.value }, admin.id),
+            aoConfirmar: () => GPC.atualizarConta(u.id, { nome: nome.value, email: email.value }),
         });
         if (salvo) { GPCUI.toast('Usuário atualizado.'); desenhar(); }
     }
@@ -36,7 +33,7 @@
         });
         if (!ok) return;
         try {
-            GPC.excluirUsuario(u.id);
+            await GPC.excluirUsuario(u.id);
             GPCUI.toast('Usuário excluído.');
         } catch (e) {
             GPCUI.toast(GPCUI.mensagemDeErro(e), 'erro');
@@ -44,9 +41,11 @@
         desenhar();
     }
 
-    function desenhar() {
+    async function desenhar() {
         const termo = semAcento(busca.value.trim());
-        const todos = GPC.listarUsuarios();
+        let todos;
+        try { todos = await GPC.listarUsuarios(); }
+        catch (e) { area.replaceChildren(h('div', { class: 'vazio' }, GPCUI.mensagemDeErro(e))); return; }
         const lista = todos.filter((u) => !termo || semAcento(u.nome).includes(termo) || semAcento(u.email).includes(termo));
         resumo.textContent = termo
             ? `${lista.length} de ${todos.length} ${todos.length === 1 ? 'usuário' : 'usuários'}.`
@@ -74,26 +73,12 @@
 
     busca.addEventListener('input', desenhar);
 
-    async function redefinir() {
-        const ok = await GPCUI.confirmar({
-            titulo: 'Restaurar dados de demonstração?',
-            mensagem: 'Apaga TODOS os usuários, progressos e pedidos deste navegador e volta ao estado inicial (só a conta de administrador). Você será desconectado.',
-            rotulo: 'Apagar tudo e restaurar', perigo: true,
-        });
-        if (!ok) return;
-        GPC.redefinirTudo();
-        GPCUI.avisoProximaPagina('Dados restaurados. Use admin@gpc.com para entrar.');
-        location.href = 'login.html';
-    }
-
     raiz.replaceChildren(
         h('div', { class: 'eyebrow' }, 'Administração'),
         h('h1', {}, 'Usuários'),
         resumo,
         h('div', { class: 'busca' }, h('label', { for: 'busca' }, 'Buscar'), busca),
         area,
-        h('div', { class: 'rodape-admin' },
-            h('button', { class: 'btn btn-perigo btn-peq', type: 'button', onclick: redefinir }, 'Restaurar dados de demonstração'),
-            h('span', { class: 'sm' }, 'Os dados ficam salvos só neste navegador.')));
+        h('div', { class: 'rodape-admin' }, h('span', { class: 'sm' }, 'Usuários e pedidos são carregados do backend GPC.')));
     desenhar();
 })();

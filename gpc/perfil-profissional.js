@@ -9,9 +9,11 @@
     const caixaSolicitar = h('section', { class: 'cartao', 'aria-labelledby': 'tit-solicitar' });
     const caixaPedidos = h('section', { class: 'cartao', 'aria-labelledby': 'tit-pedidos' });
 
-    function desenhar() {
+    async function desenhar() {
         const atual = GPC.usuarioAtual();
-        const pedidos = GPC.minhasVerificacoes(usuario.id);
+        let pedidos;
+        try { pedidos = await GPC.minhasVerificacoes(usuario.id); }
+        catch (err) { raiz.replaceChildren(h('p', { class: 'erro-campo', role: 'alert' }, GPCUI.mensagemDeErro(err))); return; }
         const pendentes = new Set(pedidos.filter((p) => p.status === 'PENDENTE').map((p) => p.tipo));
 
         // ---- solicitar
@@ -28,12 +30,13 @@
                 off ? h('small', {}, tem ? 'você já possui' : 'pedido pendente') : null);
         });
         const botao = h('button', { class: 'btn btn-pri', type: 'submit', disabled: livres === 0 }, 'Solicitar');
-        const form = h('form', { novalidate: true, onsubmit: (e) => {
+        const form = h('form', { novalidate: true, onsubmit: async (e) => {
             e.preventDefault();
             erro.hidden = true;
             const marcado = form.querySelector('input[name="tipo"]:checked');
             try {
-                GPC.solicitarPerfil(usuario.id, marcado ? marcado.value : '');
+                if (!marcado) throw new GPC.Erro('Escolha um tipo de perfil.');
+                await GPC.solicitarPerfil(usuario.id, marcado.value);
                 GPCUI.toast(`Pedido de ${GPC.rotulo(marcado.value)} enviado para análise.`);
                 desenhar();
             } catch (err) {

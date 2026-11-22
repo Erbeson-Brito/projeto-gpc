@@ -1,4 +1,4 @@
-// Login: confere e-mail e senha na "API" local (store.js) e leva o usuário ao destino certo.
+// Login: autentica pela API Spring e leva o usuário ao destino certo.
 (function () {
     const form = document.getElementById('formLogin');
     const erro = document.getElementById('erroLogin');
@@ -21,9 +21,13 @@
         erro.hidden = false;
     }
 
+    // leva o e-mail já digitado (e o "voltar para") à tela de recuperação
     document.getElementById('esqueciSenha').addEventListener('click', (e) => {
-        e.preventDefault();
-        GPCUI.toast('Esta versão funciona só no navegador e não envia e-mails. Peça a um administrador para excluir a conta antiga e crie uma nova.', 'erro');
+        const q = new URLSearchParams();
+        const email = document.getElementById('email').value.trim();
+        if (email) q.set('email', email);
+        if (proxima) q.set('next', proxima);
+        if (q.toString()) { e.preventDefault(); location.href = 'esqueci-senha.html?' + q; }
     });
 
     form.addEventListener('submit', async (e) => {
@@ -37,7 +41,7 @@
         botao.disabled = true; // evita clicar duas vezes durante a animação
         let usuario;
         try {
-            usuario = GPC.entrar(email, senha);
+            usuario = await GPC.entrar(email, senha);
         } catch (err) {
             botao.disabled = false;
             mostrarErro(GPCUI.mensagemDeErro(err));

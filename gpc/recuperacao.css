@@ -1,0 +1,68 @@
+/* Telas "Esqueci minha senha" e "Redefinir senha" — reaproveita o login.css */
+.area-login .texto-apoio{ line-height: 1.5; }
+
+.btn-link{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.btn-entrar:disabled{
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.voltar-login{
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+}
+.voltar-login a{ color: #017b70; text-decoration: none; }
+.voltar-login a:hover{ text-decoration: underline; }
+
+.mostrar-senha{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666666;
+    cursor: pointer;
+}
+.area-login .mostrar-senha input{ margin: 0; padding: 0; width: auto; }
+
+.dica-senha{ margin-top: 8px; font-size: 12px; color: #666666; }
+
+/* caixa de sucesso */
+.caixa-sucesso{
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #e8f5f3;
+    border: 1px solid #b7dcd7;
+    color: #0c4b44;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* caixa do modo desenvolvimento */
+.caixa-dev{
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #fff8e1;
+    border: 1px dashed #d9a400;
+    color: #6b5200;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.caixa-dev strong{ display: block; margin-bottom: 6px; }
+.caixa-dev a{ color: #6b5200; font-weight: bold; word-break: break-all; }
+
+/* .area-login usa display:flex, o que anularia o atributo hidden */
+[hidden]{ display: none !important; }
+
+@media(max-width: 768px){
+    .conteudo1{ min-height: auto; }
+}

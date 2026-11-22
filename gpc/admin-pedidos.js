@@ -20,7 +20,7 @@
         });
         if (!ok) return;
         try {
-            GPC.decidirVerificacao(pedido.id, aprovar, admin.id);
+            await GPC.decidirVerificacao(pedido.id, aprovar, admin.id);
             GPCUI.toast(`Pedido de ${pedido.nome} ${aprovar ? 'aprovado' : 'rejeitado'}.`);
         } catch (e) {
             GPCUI.toast(GPCUI.mensagemDeErro(e), 'erro');
@@ -28,8 +28,10 @@
         desenhar();
     }
 
-    function desenhar() {
-        const lista = GPC.pendentes();
+    async function desenhar() {
+        let lista;
+        try { lista = await GPC.pendentes(); }
+        catch (e) { area.replaceChildren(h('div', { class: 'vazio' }, GPCUI.mensagemDeErro(e))); return; }
         resumo.textContent = lista.length === 0
             ? 'Nenhum pedido aguardando análise.'
             : `${lista.length} ${lista.length === 1 ? 'pedido aguardando' : 'pedidos aguardando'} análise.`;

@@ -420,4 +420,24 @@
     redefinirTudo, fmtData, rotulo,
     _teste: { sha256, normalizar, corrigir },
   };
+  // Fluxos já cobertos pelo backend usam a API Spring. Trilhas e progresso
+  // ficam locais até existir persistência correspondente no servidor.
+  if (global.GPCAPI) {
+    Object.assign(global.GPC, {
+      usuarioAtual: global.GPCAPI.usuarioAtual,
+      cadastrar: global.GPCAPI.cadastrar,
+      entrar: global.GPCAPI.entrar,
+      sair: global.GPCAPI.sair,
+      atualizarConta: global.GPCAPI.atualizarConta,
+      listarUsuarios: global.GPCAPI.listarUsuarios,
+      excluirUsuario: global.GPCAPI.excluirUsuario,
+      solicitarPerfil: global.GPCAPI.solicitarPerfil,
+      minhasVerificacoes: global.GPCAPI.minhasVerificacoes,
+      pendentes: global.GPCAPI.pendentes,
+      decidirVerificacao: global.GPCAPI.decidirVerificacao,
+      temPapel: (u, papel) => !!u && (u.papeis || []).includes(papel === 'ADMIN' ? 'ADMINISTRADOR' : papel),
+      atualizarAluno: async () => { throw new ErroGPC('O perfil de aluno ainda não tem endpoint no backend; esses campos ainda não são salvos no servidor.'); },
+      editarUsuario: async () => { throw new ErroGPC('A API atual não permite editar o status da conta.'); },
+    });
+  }
 })(window);

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="recuperacao.css">
+        <link rel="shortcut icon" href="midia/GPCfavicon.png" type="image/x-icon">
+        <title>Nova senha · GPC</title>
+    </head>
+    <body>
+        <section class="conteudo1">
+            <img src="midia/GPClogo.png" alt="logo-gpc">
+            <div class="hero1">
+                <div class="info-texto">NOVA SENHA</div>
+                <h1>Quase lá.</h1>
+                <p>
+                    Escolha uma senha nova para voltar às suas trilhas e continuar sua jornada.
+                </p>
+            </div>
+        </section>
+        <section class="conteudo2">
+            <div class="hero2">
+                <div class="cabecalho">
+                    <a href="login.html" class="btn-voltarInicio" id="linkVoltar">← Voltar ao login</a>
+                </div>
+
+                <!-- verificando o link -->
+                <div id="estadoCarregando" class="area-login">
+                    <h2>Verificando link...</h2>
+                </div>
+
+                <!-- link inválido/expirado -->
+                <div id="estadoInvalido" class="area-login" hidden>
+                    <h2>Link inválido</h2>
+                    <p class="erro-form" id="msgInvalido" role="alert"></p>
+                    <a href="esqueci-senha.html" class="btn-entrar btn-link" style="margin-top:20px">Pedir um novo link</a>
+                </div>
+
+                <!-- formulário -->
+                <form id="formRedefinir" class="area-login" novalidate hidden>
+                    <h2>Crie uma nova senha</h2>
+                    <p class="texto-apoio">Use pelo menos 6 caracteres.</p>
+
+                    <label for="novaSenha">Nova senha</label>
+                    <input type="password" id="novaSenha" placeholder="Digite a nova senha" autocomplete="new-password" required>
+
+                    <label for="confirmarSenha">Confirme a nova senha</label>
+                    <input type="password" id="confirmarSenha" placeholder="Digite novamente" autocomplete="new-password" required>
+
+                    <label class="mostrar-senha"><input type="checkbox" id="mostrarSenha"> Mostrar senhas</label>
+
+                    <p class="erro-form" id="erroRedefinir" role="alert" hidden></p>
+                    <button type="submit" class="btn-entrar" id="btnSalvar">Salvar nova senha</button>
+                </form>
+
+                <!-- sucesso -->
+                <div id="estadoSucesso" class="area-login" hidden>
+                    <h2>Senha alterada!</h2>
+                    <div class="caixa-sucesso" role="status">Sua senha foi redefinida com sucesso. Agora é só entrar com a nova senha.</div>
+                    <a href="login.html" class="btn-entrar btn-link" id="btnIrLogin" style="margin-top:20px">Ir para o login</a>
+                </div>
+            </div>
+        </section>
+        <script src="dados.js"></script>
+        <script src="api.js"></script>
+        <script src="store.js"></script>
+        <script src="ui.js"></script>
+        <script src="redefinir-senha.js"></script>
+    </body>
+</html>
