@@ -111,6 +111,7 @@
       }],
       progresso: {},
       verificacoes: [],
+      tokens: [],
     };
   }
 
@@ -118,6 +119,7 @@
     let d = null;
     try { d = JSON.parse(disco.ler(CHAVE_DB)); } catch (e) { d = null; }
     if (!d || d.versao !== 1) { d = semente(); salvar(d); }
+    if (!Array.isArray(d.tokens)) d.tokens = []; // bancos criados antes da recuperação de senha
     return d;
   }
   function salvar(d) { disco.gravar(CHAVE_DB, JSON.stringify(d)); }
@@ -183,7 +185,7 @@
     return publico(u);
   }
 
-  function sair() { disco.apagar(CHAVE_SESSAO); }
+  function sair() { disco.apagar(CHAVE_SESSAO); disco.apagar('gpc:usuario-api'); }
 
   /* -------------------------------------------------------------- usuários */
   function atualizarConta(id, { nome, email }) {
@@ -401,6 +403,45 @@
     return v;
   }
 
+  /* ------------------------------------------------------ recuperação de senha */
+  const VALIDADE_TOKEN_MS = 30 * 60 * 1000;
+
+  // Sem servidor de e-mail, o token é devolvido na própria resposta (modo desenvolvimento).
+  function esqueciSenha(email) {
+    email = vEmail(email);
+    const d = carregar();
+    const u = d.usuarios.find((x) => x.email === email && x.status === 'ATIVA');
+    const resp = { mensagem: 'Se o e-mail estiver cadastrado, você receberá um link para criar uma nova senha.' };
+    if (!u) return resp;
+    const token = aleatorio(24);
+    d.tokens = d.tokens.filter((t) => t.usuarioId !== u.id && Date.parse(t.expiraEm) > Date.now());
+    d.tokens.push({ token, usuarioId: u.id, expiraEm: new Date(Date.now() + VALIDADE_TOKEN_MS).toISOString() });
+    salvar(d);
+    resp.tokenDev = token;
+    return resp;
+  }
+
+  function tokenValido(d, token) {
+    const t = d.tokens.find((x) => x.token === token);
+    if (!t || Date.parse(t.expiraEm) < Date.now() || !achar(d, t.usuarioId)) {
+      throw new ErroGPC('Link de recuperação inválido ou expirado. Peça um novo.');
+    }
+    return t;
+  }
+  function validarTokenSenha(token) { tokenValido(carregar(), String(token || '')); return { valido: true }; }
+
+  function redefinirSenha(token, novaSenha) {
+    const d = carregar();
+    const t = tokenValido(d, String(token || ''));
+    novaSenha = vSenha(novaSenha);
+    const u = achar(d, t.usuarioId);
+    u.salt = aleatorio();
+    u.hash = sha256(u.salt + novaSenha);
+    d.tokens = d.tokens.filter((x) => x.token !== t.token);
+    salvar(d);
+    return { mensagem: 'Senha alterada com sucesso.' };
+  }
+
   /* ------------------------------------------------------------------ extras */
   function redefinirTudo() {
     disco.apagar(CHAVE_DB);
@@ -413,31 +454,11 @@
 
   global.GPC = {
     Erro: ErroGPC, NOTA_MINIMA, PAPEIS_PROFISSIONAIS, NIVEIS, ADMIN_EMAIL, ADMIN_SENHA,
-    usuarioAtual, temPapel, cadastrar, entrar, sair,
+    usuarioAtual, temPapel, cadastrar, entrar, sair, esqueciSenha, validarTokenSenha, redefinirSenha,
     atualizarConta, atualizarAluno, listarUsuarios, editarUsuario, excluirUsuario,
     trilhas, trilha, estadoTrilha, resumoTrilhas, buscarNo, enviarRespostas,
     solicitarPerfil, minhasVerificacoes, pendentes, decidirVerificacao,
     redefinirTudo, fmtData, rotulo,
     _teste: { sha256, normalizar, corrigir },
   };
-  // Fluxos já cobertos pelo backend usam a API Spring. Trilhas e progresso
-  // ficam locais até existir persistência correspondente no servidor.
-  if (global.GPCAPI) {
-    Object.assign(global.GPC, {
-      usuarioAtual: global.GPCAPI.usuarioAtual,
-      cadastrar: global.GPCAPI.cadastrar,
-      entrar: global.GPCAPI.entrar,
-      sair: global.GPCAPI.sair,
-      atualizarConta: global.GPCAPI.atualizarConta,
-      listarUsuarios: global.GPCAPI.listarUsuarios,
-      excluirUsuario: global.GPCAPI.excluirUsuario,
-      solicitarPerfil: global.GPCAPI.solicitarPerfil,
-      minhasVerificacoes: global.GPCAPI.minhasVerificacoes,
-      pendentes: global.GPCAPI.pendentes,
-      decidirVerificacao: global.GPCAPI.decidirVerificacao,
-      temPapel: (u, papel) => !!u && (u.papeis || []).includes(papel === 'ADMIN' ? 'ADMINISTRADOR' : papel),
-      atualizarAluno: async () => { throw new ErroGPC('O perfil de aluno ainda não tem endpoint no backend; esses campos ainda não são salvos no servidor.'); },
-      editarUsuario: async () => { throw new ErroGPC('A API atual não permite editar o status da conta.'); },
-    });
-  }
 })(window);

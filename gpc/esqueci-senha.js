@@ -1,4 +1,4 @@
-// Esqueci minha senha: pede ao backend o link de redefinição.
+// Esqueci minha senha: gera o link de redefinição.
 (function () {
     const form = document.getElementById('formEsqueci');
     const erro = document.getElementById('erroEsqueci');
@@ -31,7 +31,7 @@
         botao.disabled = true;
         botao.textContent = 'Enviando...';
         try {
-            const resp = await GPCAPI.esqueciSenha(email);
+            const resp = await GPC.esqueciSenha(email);
             form.hidden = true;
             document.getElementById('msgConfirmacao').textContent = resp.mensagem;
 

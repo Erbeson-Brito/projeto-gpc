@@ -1,4 +1,4 @@
-// Redefinir senha: valida o token do link no backend e grava a nova senha.
+// Redefinir senha: valida o token do link no banco local e grava a nova senha.
 (function () {
     const params = new URLSearchParams(location.search);
     const token = params.get('token') || '';
@@ -31,7 +31,7 @@
             return;
         }
         try {
-            await GPCAPI.validarTokenSenha(token);
+            await GPC.validarTokenSenha(token);
             mostrar('formRedefinir');
             $('novaSenha').focus();
         } catch (err) {
@@ -54,7 +54,7 @@
         botao.disabled = true;
         botao.textContent = 'Salvando...';
         try {
-            await GPCAPI.redefinirSenha(token, nova);
+            await GPC.redefinirSenha(token, nova);
             // tira o token da barra de endereço/histórico
             history.replaceState(null, '', 'redefinir-senha.html');
             mostrar('estadoSucesso');

@@ -1,4 +1,4 @@
-// Login: autentica pela API Spring e leva o usuário ao destino certo.
+// Login: autentica no banco local e leva o usuário ao destino certo.
 (function () {
     const form = document.getElementById('formLogin');
     const erro = document.getElementById('erroLogin');

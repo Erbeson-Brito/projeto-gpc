@@ -1,4 +1,4 @@
-// Cadastro: cria a conta na API e leva o aluno ao destino escolhido.
+// Cadastro: cria a conta no banco local e leva o aluno ao destino escolhido.
 (function () {
     const form = document.getElementById('formCadastro');
     const erro = document.getElementById('erroCadastro');
